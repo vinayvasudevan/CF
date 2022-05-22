@@ -1,0 +1,24 @@
+{
+   "Resources":{
+         "NewVolume":{
+		 "Type": "AWS::EC2::Volume",
+		 "Properties":{
+		      "Size": "10",
+			"AvailabilityZone": {"Fn::GetAtt" : [ "i-0f9a82a5bcd65692b","ap-southeast-1b" ]
+			},
+			"Tags" : [ {
+                  "Key" : "ev",
+				  "Value" : "dummy"
+				  }]
+	      }
+     }
+},
+             "MountPoint" : {
+				"Type" : "AWS::EC2::VolumeAttachment",
+				"Properties" : {
+				"InstanceId" : { "i-0f9a82a5bcd65692b" : "Ec2Instance" },
+				"VolumeId" : { "vol-0543bdd3ca79a9b3d" : "NewVolume" },
+				"Device" : "/dev/sdh"
+				
+           }
+   }
